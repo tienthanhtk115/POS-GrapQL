@@ -1,0 +1,7 @@
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.csproj.AssemblyReference.cache
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.GeneratedMSBuildEditorConfig.editorconfig
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.AssemblyInfoInputs.cache
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.AssemblyInfo.cs
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.csproj.CoreCompileInputs.cache
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.MvcApplicationPartsAssemblyInfo.cs
+D:\Project\posinventory\Service.PosConnect\obj\Debug\net6.0\Service.PosConnect.MvcApplicationPartsAssemblyInfo.cache

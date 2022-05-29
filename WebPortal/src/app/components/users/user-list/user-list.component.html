@@ -1,0 +1,30 @@
+<div class="site-page-header-ghost-wrapper">
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Người dùng</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="createClick()">Thêm mới</button>
+        </nz-page-header-extra>
+        <nz-page-header-content>
+            <nz-table nzShowSizeChanger [nzData]="listData">
+                <thead>
+                    <tr>
+                        <th nzColumnKey="name">Tên người dùng</th>
+                        <th nzColumnKey="email">Tài khoản</th>
+                        <th nzColumnKey="phone">Số điện thoại</th>
+                        <th nzColumnKey="role">Phân quyền</th>
+                        <th nzColumnKey="status">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of listData">
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.email }}</td>
+                        <td>{{ data.phone }}</td>
+                        <td>{{ data.role }}</td>
+                        <td>{{ data.status }}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-page-header-content>
+    </nz-page-header>
+</div>

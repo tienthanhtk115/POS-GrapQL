@@ -1,0 +1,114 @@
+<div style="padding: 10px;">
+    <div nz-row style="padding: 10px;background: #00a0e9;">
+        <div nz-col nzSpan="12">
+            <nz-input-group nzSize="large" [nzSuffix]="suffixIcon">
+                <input nz-input [(ngModel)]="productSelected" (input)="onChange($event)" (keyup.enter)="clearSearch()"
+                    [nzAutocomplete]="auto" placeholder="Tìm mặt hàng" />
+            </nz-input-group>
+            <ng-template #suffixIcon>
+                <i nz-icon nzType="search"></i>
+            </ng-template>
+            <nz-autocomplete #auto (selectionChange)="onSelect($event)">
+                <nz-auto-option *ngFor="let product of productOptions" [nzValue]="product.id" [nzLabel]="product.name">
+                    {{ product.barcode }} - {{ product.name }}</nz-auto-option>
+            </nz-autocomplete>
+        </div>
+    </div>
+
+    <div nz-row>
+        <div nz-col nzSpan="18" style="padding-right: 20px;">
+            <nz-table #editRowTable nzBordered [nzData]="listOrderLineData">
+                <thead>
+                    <tr>
+                        <th nzWidth="15%">Mã vạch (SKU)</th>
+                        <th nzWidth="50%">Sản phẩm</th>
+                        <th nzWidth="15%">Giá bán</th>
+                        <th nzWidth="10%">Số lượng</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of editRowTable.data" class="editable-row">
+                        <td>{{ data.productBarcode }}</td>
+                        <td>{{ data.productName }}</td>
+                        <td>{{ data.salePrice }}</td>
+                        <td>
+                            <nz-input-number [nzMin]="1" [(ngModel)]="data.quantity" (ngModelChange)="onChangeQuantity()"
+                                [ngModelOptions]="{standalone: true}">
+                            </nz-input-number>
+                        </td>
+                        <td>
+                            <a (click)="deleteRow(data.productId)">Xóa</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+
+        <div nz-col nzSpan="6" style="padding: 10px;">
+            <form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-label nzFor="status"><b>Khách hàng</b></nz-form-label>
+                    <div nz-row>
+                        <div nz-col nzSpan="21">
+                            <nz-input-group nzSize="large" [nzSuffix]="suffixIcon">
+                                <input nz-input [(ngModel)]="partnerSelected" [nzAutocomplete]="autoPartner"
+                                    (input)="onChangePartner($event)" formControlName="partner"
+                                    placeholder="Tìm khách hàng" />
+                            </nz-input-group>
+                            <ng-template #suffixIcon>
+                                <i nz-icon nzType="search"></i>
+                            </ng-template>
+                            <nz-autocomplete #autoPartner>
+                                <nz-auto-option *ngFor="let customer of partnerOptions" [nzValue]="customer.id"
+                                    [nzLabel]="customer.name">
+                                    {{ customer.name }}</nz-auto-option>
+                            </nz-autocomplete>
+                        </div>
+                        <div nz-col nzSpan="3">
+                            <button nz-button nzType="primary" [nzSize]="size" (click)="createCustomerClick()">
+                                <i nz-icon nzType="plus-square" nzTheme="outline"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label nzFor="payment"><b>Phương thức thanh toán</b></nz-form-label>
+                    <nz-radio-group [(ngModel)]="paymentMethod" formControlName="payment"
+                        (ngModelChange)="onChangePayment()">
+                        <label nz-radio nzValue="cash">Tiền mặt</label>
+                        <label nz-radio nzValue="bank">Ngân hàng</label>
+                        <label nz-radio nzValue="pos">Quẹt thẻ</label>
+                    </nz-radio-group>
+                </nz-form-item>
+                <nz-form-item [hidden]="activeBankAccount">
+                    <nz-form-label nzFor="account"><b>Tài khoản nhận</b></nz-form-label>
+                    <nz-select [(ngModel)]="bankAccount" formControlName="account" style="padding-right: 8px;">
+                        <nz-option *ngFor="let b of listBankAccount" [nzLabel]="b.accountNumber + '-' + b.accountName"
+                        [nzValue]="b.id"></nz-option> 
+                    </nz-select>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label><b>Tổng tiền hàng</b></nz-form-label>
+                    <h1>{{ totalSalePrice }} đ</h1>
+                </nz-form-item>
+                <nz-form-item>
+                    <nz-form-label><b>Ghi chú</b></nz-form-label>
+                    <textarea rows="2" formControlName="note" nz-input></textarea>
+                </nz-form-item>
+                <div nz-row>
+                    <div nz-col nzSpan="10">
+                        <button nz-button nzType="default" [nzSize]="size">In biên lai</button>
+                    </div>
+                    <div nz-col nzSpan="14">
+                        <button nz-button nzType="primary" [nzSize]="size">Thanh toán đơn
+                            hàng</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,35 @@
+<div class="site-page-header-ghost-wrapper">
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Kho hàng</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="createClick()">Thêm mới</button>
+        </nz-page-header-extra>
+        <nz-page-header-content>
+            <nz-table nzShowSizeChanger [nzData]="listData">
+                <thead>
+                    <tr>
+                        <th nzColumnKey="code">Mã kho hàng</th>
+                        <th nzColumnKey="name">Tên kho hàng</th>
+                        <th nzColumnKey="address">Địa chỉ</th>
+                        <th nzColumnKey="status">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of listData">
+                        <td>{{ data.code }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.address }}</td>
+                        <td>
+                            <ng-template [ngIf]="data.status == '1'">
+                                <span nz-typography nzType="success">Hoạt động</span>
+                            </ng-template>
+                            <ng-template [ngIf]="data.status == '0'">
+                                <span nz-typography nzType="warning">Không hoạt động</span>
+                            </ng-template>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </nz-page-header-content>
+    </nz-page-header>
+</div>

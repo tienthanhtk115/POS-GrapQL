@@ -1,0 +1,120 @@
+<div class="site-page-header-ghost-wrapper">
+    <form nz-form [nzLayout]="'vertical'" [formGroup]="validateForm" (ngSubmit)="transferCreate()">
+        <nz-page-header nzBackIcon [nzGhost]="false">
+            <nz-page-header-title>Thêm Phiếu nhập kho</nz-page-header-title>
+            <nz-page-header-extra>
+                <button nz-button nzType="primary" type="submit">Lưu lại</button>
+            </nz-page-header-extra>
+            <nz-page-header-content>
+                <div nz-row>
+                    <div nz-col nzSpan="8">
+                        <nz-form-item>
+                            <nz-form-label nzFor="status">Kho nguồn</nz-form-label>
+                            <nz-select formControlName="warehouseSourceId" style="padding-right: 8px;">
+                                <nz-option 
+                                    *ngFor="let warehouse of listWarehouse" 
+                                    [nzValue]="warehouse.id"
+                                    [nzLabel]="warehouse.name"></nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="8">
+                        <nz-form-item>
+                            <nz-form-label nzFor="status">Kho đích</nz-form-label>
+                            <nz-select formControlName="warehouseDestId"  style="padding-right: 8px;">
+                                <nz-option 
+                                    *ngFor="let warehouse of listWarehouse"
+                                    [nzValue]="warehouse.id"
+                                    [nzLabel]="warehouse.name"></nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="8">
+                        <nz-form-item>
+                            <nz-form-label nzFor="date">Ngày thực hiện</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <nz-date-picker nzShowTime formControlName="date"></nz-date-picker>
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="8">
+                        <nz-form-item>
+                            <nz-form-label nzFor="status">Đối tác</nz-form-label>
+                            <nz-select formControlName="partnerId" style="padding-right: 8px;">
+                                <nz-option
+                                    *ngFor="let supplier of listSupplier"
+                                    [nzValue]="supplier.id"
+                                    [nzLabel]="supplier.name"></nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="8">
+                        <nz-form-item>
+                            <nz-form-label nzFor="document_ref">Tài liệu tham chiếu</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <input nz-input nzSpan="8" 
+                                    name="document_ref" 
+                                    type="text" id="document_ref"
+                                    formControlName="reference"
+                                    placeholder="NK001">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <nz-tabset>
+                    <nz-tab nzTitle="Danh sách sản phẩm">
+                        <input nz-input [(ngModel)]="productSelected" [ngModelOptions]="{standalone: true}" (input)="onChange($event)"
+                            [nzAutocomplete]="auto" />
+                        <nz-autocomplete #auto (selectionChange)="onSelect($event)">
+                            <nz-auto-option 
+                                *ngFor="let product of productOptions" 
+                                [nzValue]="product.id"
+                                [nzLabel]="product.name">
+                                {{ product.name }}</nz-auto-option>
+                        </nz-autocomplete>
+                        <br />
+                        <br />
+                        <nz-table #editRowTable nzBordered [nzData]="listOfData">
+                            <thead>
+                                <tr>
+                                    <th>Sản phẩm</th>
+                                    <th>Số lượng</th>
+                                    <th>Vị trí trong kho</th>
+                                    <th>Lô hàng</th>
+                                    <th>Ngày hết hạn</th>
+                                    <th>Số ngày cảnh báo</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of editRowTable.data" class="editable-row">
+                                    <td>{{ data.product }}</td>
+                                    <td>                                        
+                                        <nz-input-number [nzMin]="1" [(ngModel)]="data.quantity" [ngModelOptions]="{standalone: true}" ></nz-input-number>
+                                    </td>
+                                    <td>
+                                        <input nz-input [(ngModel)]="data.position" [ngModelOptions]="{standalone: true}"/>
+                                    </td>
+                                    <td>
+                                        <input nz-input [(ngModel)]="data.lotNumber" [ngModelOptions]="{standalone: true}"/>
+                                    </td>
+                                    <td>
+                                        <input type="date" nz-input [(ngModel)]="data.expiryDate" [ngModelOptions]="{standalone: true}"/>
+                                    </td>
+                                    <td>                                  
+                                        <nz-input-number [nzMin]="1" [(ngModel)]="data.numDayWarning" [ngModelOptions]="{standalone: true}" ></nz-input-number>
+                                    </td>
+                                    <td>                                   
+                                        <a (click)="deleteRow(data.id)">Xóa</a>
+                                    </td>                                    
+                                </tr>
+                            </tbody>
+                        </nz-table>
+                    </nz-tab>
+                </nz-tabset>
+            </nz-page-header-content>
+        </nz-page-header>
+    </form>
+</div>

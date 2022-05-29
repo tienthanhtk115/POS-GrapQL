@@ -1,0 +1,126 @@
+version: '3.4'
+
+services:
+  posinventory-apigateway:
+    container_name: posinventory-apigateway
+    image: smartgapjsc/posinventory-apigateway:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8200
+    labels:
+      service: posinventory-apigateway
+      env: dev
+      project: posinventory
+  #posinventory-service-common:
+  #  container_name: posinventory-service-common
+  #  image: smartgapjsc/posinventory-service-common:tag
+  #  networks:
+  #    - smartgapjsc-posinventory-network
+  #  ports:
+  #    - target: 80
+  #      published: 8201
+  #  labels:
+  #    service: posinventory-service-common
+  #    env: dev
+  #    project: posinventory
+  posinventory-service-indentily:
+    container_name: posinventory-service-indentily
+    image: smartgapjsc/posinventory-service-indentily:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8202
+    labels:
+      service: posinventory-service-indentily
+      env: dev
+      project: posinventory
+  posinventory-service-order:
+    container_name: posinventory-service-order
+    image: smartgapjsc/posinventory-service-order:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8203
+    labels:
+      service: posinventory-service-order
+      env: dev
+      project: posinventory
+  posinventory-service-partner:
+    container_name: posinventory-service-partner
+    image: smartgapjsc/posinventory-service-partner:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8204
+    labels:
+      service: posinventory-service-partner
+      env: dev
+      project: posinventory
+  posinventory-service-payment:
+    container_name: posinventory-service-payment
+    image: smartgapjsc/posinventory-service-payment:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8205
+    labels:
+      service: posinventory-service-payment
+      env: dev
+      project: posinventory
+  posinventory-service-product:
+    container_name: posinventory-service-product
+    image: smartgapjsc/posinventory-service-product:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8207
+    labels:
+      service: posinventory-service-product
+      env: dev
+      project: posinventory
+  posinventory-service-stock:
+    container_name: posinventory-service-stock
+    image: smartgapjsc/posinventory-service-stock:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8208
+    labels:
+      service: posinventory-service-stock
+      env: dev
+      project: posinventory
+  posinventory-service-user:
+    container_name: posinventory-service-user
+    image: smartgapjsc/posinventory-service-user:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8209
+    labels:
+      service: posinventory-service-user
+      env: dev
+      project: posinventory
+  posinventory-webportal:
+    container_name: posinventory-webportal
+    image: smartgapjsc/posinventory-webportal:tag
+    networks:
+      - smartgapjsc-posinventory-network
+    ports:
+      - target: 80
+        published: 8210
+    labels:
+      service: posinventory-webportal
+      env: dev
+      project: posinventory
+networks:
+  smartgapjsc-posinventory-network:
+    driver: bridge

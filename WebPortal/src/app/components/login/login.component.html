@@ -1,0 +1,25 @@
+<mat-card>
+    <mat-card-content>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+            <img width="100%" src="./assets/logo_smartgap.jfif" />
+            <h1>Đăng nhập</h1>
+            <mat-error *ngIf="!loginValid">
+                Thông tin đăng nhập không hợp lệ
+            </mat-error>
+            <mat-form-field>
+                <input matInput placeholder="Email" [(ngModel)]="username" name="username" required>
+                <mat-error>
+                    Email không hợp lệ
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput type="password" placeholder="Mật khẩu" [(ngModel)]="password" name="password" required>
+                <mat-error>
+                    Mật khẩu không được để trống
+                </mat-error>
+            </mat-form-field>
+            <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Đăng nhập</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+<router-outlet></router-outlet>

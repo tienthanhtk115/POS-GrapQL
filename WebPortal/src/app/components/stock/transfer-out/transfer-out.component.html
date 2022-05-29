@@ -1,0 +1,121 @@
+<!-- <div class="site-page-header-ghost-wrapper">
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Phiếu xuất kho</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="createClick()">Thêm mới</button>
+        </nz-page-header-extra>
+        <nz-page-header-content>
+            <nz-table #nestedTable [nzData]="listOfParentData" [nzPageSize]="10">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mã phiếu</th>
+                        <th>Ngày thực hiện</th>
+                        <th>Nhà cung cấp</th>
+                        <th>Tham chiếu</th>
+                        <th>Kho nhập</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+                        <tr>
+                            <td [(nzExpand)]="data.expand"></td>
+                            <td>{{ data.code }}</td>
+                            <td>{{ data.customer }}</td>
+                            <td>{{ data.warehouse }}</td>
+                            <td>{{ data.date }}</td>
+                            <td>{{ data.status }}</td>
+                        </tr>
+                        <tr [nzExpand]="data.expand">
+                            <nz-table #innerTable [nzData]="data.transferLines" nzSize="middle"
+                                [nzShowPagination]="false">
+                                <thead>
+                                    <tr>
+                                        <th>Mã vạch</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                </thead>
+                <tbody>
+                    <tr *ngFor="let data of innerTable.data">
+                        <td>{{ data.barcode }}</td>
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.qty }}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+            </tr>
+            </ng-template>
+            </tbody>
+            </nz-table>
+        </nz-page-header-content>
+    </nz-page-header>
+</div> -->
+
+<div class="site-page-header-ghost-wrapper">
+    <nz-page-header [nzGhost]="false">
+        <nz-page-header-title>Phiếu xuất kho</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary" (click)="createClick()">Thêm mới</button>
+        </nz-page-header-extra>
+        <nz-page-header-content>   
+            <nz-table #nestedTable [nzData]="listOfParentData" [nzPageSize]="10">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Mã phiếu</th>
+                        <th>Ngày thực hiện</th>
+                        <th>Nhà cung cấp</th>
+                        <th>Tham chiếu</th>
+                        <th>Kho nhập</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-template ngFor let-data [ngForOf]="nestedTable.data">
+                        <tr>
+                            <td [(nzExpand)]="data.expand!"></td>
+                            <td>                              
+                                {{ data.code }}
+                            </td>
+                            <td>{{ data.date|date:'dd/MM/yyyy HH:mm' }}</td>
+                            <td>{{ data.partnerId }}</td>
+                            <td>{{ data.reference }}</td>
+                            <td></td>
+                            <td>
+                                <ng-template [ngIf]="data.status == '1'">
+                                    <span nz-typography nzType="success">Đã hoàn thành</span>
+                                </ng-template>
+                                <ng-template [ngIf]="data.status == '0'">
+                                    <span nz-typography nzType="warning">Nháp</span>
+                                </ng-template>
+                            </td>                         
+                        </tr>
+                        <tr [nzExpand]="data.expand!">
+                            <nz-table #innerTable 
+                                [nzData]="data.transferLines" 
+                                nzSize="middle"
+                                [nzShowPagination]="false">
+                                <thead>
+                                    <tr>
+                                        <th>Mã vạch</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Số lượng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of innerTable.data">
+                                        <td></td>
+                                        <td>{{ data.product }}</td>
+                                        <td>{{ data.quantity }}</td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </nz-table>
+        </nz-page-header-content>
+    </nz-page-header>
+</div>

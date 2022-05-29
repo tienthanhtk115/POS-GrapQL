@@ -1,0 +1,70 @@
+<div class="site-page-header-ghost-wrapper">
+    <nz-page-header nzBackIcon [nzGhost]="false">
+        <nz-page-header-title>Thêm Người dùng</nz-page-header-title>
+        <nz-page-header-extra>
+            <button nz-button nzType="primary">Lưu lại</button>
+        </nz-page-header-extra>
+        <nz-page-header-content>
+            <br />
+            <form nz-form [nzLayout]="'vertical'">
+                <div nz-row>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="name">Tên người dùng</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <input nz-input nzSpan="8" name="name" type="text" id="name">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="name">Tài khoản</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <input nz-input nzSpan="8" name="name" type="text" id="name">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="name">Mật khẩu</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <input nz-input nzSpan="8" name="name" type="text" id="name">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="name">Số điện thoại</nz-form-label>
+                            <nz-form-control style="padding-right: 8px;">
+                                <input nz-input nzSpan="8" name="name" type="text" id="name">
+                            </nz-form-control>
+                        </nz-form-item>
+                    </div>
+                </div>
+                <div nz-row>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="status">Phân quyền</nz-form-label>
+                            <nz-select style="padding-right: 8px;">
+                                <nz-option nzValue="true" nzLabel="Admin"></nz-option>
+                                <nz-option nzValue="false" nzLabel="Quản lý"></nz-option>
+                                <nz-option nzValue="false" nzLabel="Nhân viên"></nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <nz-form-item>
+                            <nz-form-label nzFor="status">Trạng thái</nz-form-label>
+                            <nz-select style="padding-right: 8px;">
+                                <nz-option nzValue="true" nzLabel="Hoạt động"></nz-option>
+                                <nz-option nzValue="false" nzLabel="Không họat động"></nz-option>
+                            </nz-select>
+                        </nz-form-item>
+                    </div>
+                </div>
+            </form>
+        </nz-page-header-content>
+    </nz-page-header>
+</div>

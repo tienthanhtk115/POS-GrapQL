@@ -1,0 +1,87 @@
+<nz-layout class="app-layout">
+    <nz-sider class="menu-sidebar" nzCollapsible nzWidth="256px" nzBreakpoint="md" [(nzCollapsed)]="isCollapsed"
+        [nzTrigger]="null">
+        <div class="sidebar-logo">
+            <a href="/" target="_blank">
+                <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+                <h1>SmartGap System</h1>
+            </a>
+        </div>
+        <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+            <li nz-menu-item>
+                <i nz-icon nzType="dashboard"></i>
+                <span><a [routerLink]="['/', 'admin', 'dashboard']">Tổng quan</a></span>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="folder-view"></i>
+                <span><a [routerLink]="['/', 'admin', 'order']">Đơn hàng</a></span>
+            </li>
+            <li nz-submenu nzTitle="Hoạt động kho" nzIcon="merge-cells">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'transfer-in']">Nhập kho</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'transfer-out']">Xuất kho</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'inventory']">Kiểm kê kho</a>
+                    </li>
+                    <!-- <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'transfer-in']">Lô/Serial</a>
+                    </li> -->
+                </ul>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="qrcode"></i>
+                <span><a [routerLink]="['/', 'admin', 'product']">Sản phẩm</a></span>
+            </li>
+            <li nz-submenu nzTitle="Đối tác" nzIcon="usergroup-delete">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'customer']">Khách hàng</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'supplier']">Nhà cung cấp</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-submenu nzTitle="Báo cáo" nzIcon="pie-chart">
+            </li>
+            <li nz-submenu nzTitle="Thiết lập" nzIcon="usergroup-delete">
+                <ul>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'user']">Người dùng</a>
+                    </li>
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'warehouse']">Kho hàng</a>
+                    </li>
+                    <!-- <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'stock', 'warehouse']">Vị trí trong kho</a>
+                    </li> -->
+                    <li nz-menu-item nzMatchRouter>
+                        <a [routerLink]="['/', 'admin', 'product', 'category']">Nhóm sản phẩm</a>
+                    </li>
+                </ul>
+            </li>
+            <li nz-menu-item>
+                <i nz-icon nzType="question-circle"></i>
+                <span>Hỗ trợ</span>
+            </li>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <div class="app-header">
+                <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+                    <i class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"></i>
+                </span>
+            </div>
+        </nz-header>
+        <nz-content>
+            <div class="inner-content">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+</nz-layout>
